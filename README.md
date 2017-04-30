@@ -1,4 +1,4 @@
-# Emoji Picker  :heart_eyes: :heart_eyes:
+# Emoji Picker  :heart_eyes: :heart_eyes: :joy: :joy:
 
 This is a project which helps to select Emojis for the input box. For better convinience I have written 3 seperate folder codes:
 
