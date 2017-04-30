@@ -1,73 +1,97 @@
 # Emoji Picker
 
-:heart_eyes: :stuck_out_tongue_winking_eye: :joy: :stuck_out_tongue: Instantly add Emoji support to input fields on your website! :boom: :sparkles: :thumbsup: :metal:
+This is a project which helps to select Emojis for the input box. For better convinience I have written 3 seperate folder codes:
 
-![Example Screenshot](http://onesignal.github.io/emoji-picker/screenshot.png)
+1. HTML 5 and JavaScript: Here just emoction can be inserted in input box and textareas
 
-**Demo:** http://onesignal.github.io/emoji-picker/demo
+2. PHP: A Form is present, whatever one is writing in input box along with emoji is sent to the backend code page as well as Database(MySQL). Value is fetched from the database as well.
 
-# Installation & Usage:
+3. PHP and AJAX: A Form is present, which inserts emojis and text in the database and retrieves from it without refreshing the page.
 
-*On Robustness*: This library isn't super robust, so if you find any issues, please report it so it can be fixed (or feel free to fix it yourself). Code quality improvements are also welcome, always looking to make it better!
 
-*On CDN & Multiple Files*: Currently, the number of JavaScript files you have to include is not ideal (6 files). The files will eventually be concatenated and minified, but it might be a bit until this happens. When that's complete, it'll be added to CDNJs as well.
+## Installation
 
-1. In your `<head>` section, add the following *stylesheet* links. Adjust the `lib/css` path to match yours.
+1. Clone or Download the repository and keep it in server or local server(like XAMPP).
 
-  ```
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="lib/css/emoji.css" rel="stylesheet">
-  ```
+2. For this we are using MySQLi, sql file is present in the root directory
 
-2. Before the end of your `<body>` section, add the following *JavaScript* links. This library depends on jQuery, so jQuery must also be included, before these scripts are run. Once again, adjust the `lib/css` path to match yours.
+3. Create a Database and import the emoji_db.sql table present in the repository.
 
-  ```
-    <!-- ** Don't forget to Add jQuery here ** -->
-    <script src="lib/js/config.js"></script>
-    <script src="lib/js/util.js"></script>
-    <script src="lib/js/jquery.emojiarea.js"></script>
-    <script src="lib/js/emoji-picker.js"></script>
-  ```
+4. You need to configure your connection on all the codes i.e. HTML, PHP, AJAX
 
-3. On any input field, add the data attribute `data-emojiable="true"`.
+```
+$conn = mysqli_connect("server_details", "username", "password", "database_name");  //connection with database
 
-4. That's all you need for the default options. Play around with the demo to see what the default options give you.
+Eg. 
 
-# Configuring Options
+$conn = mysqli_connect("localhost", "root", "123456", "emoji_db");  //connection with database
 
-**I want the Emoji selector to input Unicode characters instead of images**
+```
 
-Add `data-emoji-input="unicode"` to your input field. Only the `unicode` value is checked for; entering anything else has no effect.
+You need to make changes on the following codes:demo2.php of PHP, index.php and welcome.php of AJAX 
 
-**I want to limit my input field to a certain number of characters (maxlength)**
+6. Execute index.php of all the three codes seperately as named in the folder.
 
-The `maxlength` property is mostly supported. Character input and emoji input each count as one character, so it'll stop you from entering more than the max length. Unfortunately, you can paste more than the maxlength number of characters, so that needs to be fixed.
+7. Common codes are placed in the root directory
 
-**I want classes from my original input field to be copied over to the rich emoji input area**
+  
+## Preview
 
-They are!
 
-# Trivia
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564686/88ad06b8-2dd6-11e7-891f-c53ac8cf53f5.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
 
-### You get:
-  - Input fields converted to contenteditable rich text areas with emoji support
-  - A happy face icon on the top right of each rich text area, which brings up the menu on click
-  - An emoji selection menu, with recently selected emojis at the top (thanks to angular-emoji-popup's author)
-  - Text area values can be easily converted between Unicode and HTML (Unicode+Image Tags)
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564688/8b962f9e-2dd6-11e7-9b85-d701a5dae7fd.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
 
-### What happens under the hood:
-  - When you call `new EmojiPicker().discover()`, all elements with the data attribute `data-emojiable="true"` are found, a contenteditable div is created after each one, and the original input field is hidden.
-  - When you type text into this contenteditable div, events are triggered upon each keypress/text change as well as each emoji selection, and the contents of this contenteditable div are copied to the original (now hidden) input field
-  - Text entered into this contenteditable div is plain text; selected emojis are actually `<img>` tags
-  - To get the value of the contenteditable div, call `element.val()` on the underlying hidden input field. The `<img>` emojis will be converted into Unicode emojis (plain text)
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564689/8da3d48a-2dd6-11e7-8470-8416cf08e5aa.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
 
-### Credits:
-This is a slightly modified version of [angular-emoji-popup](https://github.com/Coraza/angular-emoji-popup), which was written based on [jquery-emojiarea](https://github.com/diy/jquery-emojiarea) (converts input fields to rich emoji input areas) and uses [nanoScrollerJs](https://github.com/jamesflorentino/nanoScrollerJS) (for the popup's custom-skinned scrollbar). This version removes AngularJS as a dependency.
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564692/8f73e4e4-2dd6-11e7-9552-73555e419795.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
 
-### Improvements from the original forks:
-  - The top-right smiley face that allows you to bring up the emoji picker menu
-  - The smiley face shifts left appropriately when text entered exceeds the height and causes a scrollbar to appear
-  - The `maxlength` property of input fields is respected (emoji selections count as a single character)
-  - CSS classes from the original input field are copied over to the new contenteditable div
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564697/920182e8-2dd6-11e7-81b1-acdc253fa52b.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
 
-We built this to power emoji selection for [OneSignal](https://onesignal.com), our multi-platform push notification service.
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564698/953dc052-2dd6-11e7-89f2-5741bac72e97.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
+
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564700/9825acda-2dd6-11e7-9108-a99c570166d1.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
+
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564701/9b22a8b6-2dd6-11e7-956d-31502e028ad0.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
+
+![Screenshot of Emoji Picker ](https://cloud.githubusercontent.com/assets/15896579/25564704/9f0315d8-2dd6-11e7-83f9-cc14303efc72.png?raw=true "Screenshot of Emoji Picker")
+<br/><br/><br/>
+
+<br/><br/><br/>
+
+
+
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2016 Amir Mustafa
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
